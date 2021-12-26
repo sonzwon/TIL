@@ -1,4 +1,4 @@
-# [넘파이배열 TIL]
+# numpy_array
 
 # 1) 1차원 배열
 import numpy as np      # 배열을 사용하기 위해서는 넘파이 패키지를 임포트해야 함.
