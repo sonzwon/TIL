@@ -4,88 +4,80 @@ Created on Tue Dec 28 22:55:45 2021
 
 @author: sby04
 """
-# 판다스 패키지 임포트
+## Series
+
 import pandas as pd
-
-# 시리즈 클래스
-# 시리즈 = 값(value)+인덱스(index)
-# 시리즈는 1차원 배열
-pd.Series(range(10,14)) # 인덱스 지정안하면 인덱스는 0부터시작하는 정수가 됨
-# 0    10
-# 1    11
-# 2    12
-# 3    13
+dict_data = {'a':1,'b':2,'c':3}
+sr = pd.Series(dict_data)
+print(type(sr))
+# <class 'pandas.core.series.Series'>
+print(sr)
+# a    1
+# b    2
+# c    3
 # dtype: int64
-s = pd.Series([9904312, 3448737, 2890451, 2466052],
-              index=["서울", "부산", "인천", "대구"])
-s
-# 서울    9904312
-# 부산    3448737
-# 인천    2890451
-# 대구    2466052
-# dtype: int64
-s.index
-# Index(['서울', '부산', '인천', '대구'], dtype='object')
-s.values
-# array([9904312, 3448737, 2890451, 2466052], dtype=int64)
-s.name = '인구'
-s.index.name = '도시'
-s
-# 도시
-# 서울    9904312
-# 부산    3448737
-# 인천    2890451
-# 대구    2466052
-# Name: 인구, dtype: int64
 
 
-# Series 연산
-# 값(value)에만 적용되며 인덱스에는 영향 없음.
-s/1000000
-# 도시
-# 서울    9.904312
-# 부산    3.448737
-# 인천    2.890451
-# 대구    2.466052
-# Name: 인구, dtype: float64
+list_data = ['2019-01-01', 3.14, 'ABC', 100, True]
+sr = pd.Series(list_data)
+print(sr)
+# 0    2019-01-01
+# 1          3.14
+# 2           ABC
+# 3           100
+# 4          True
+# dtype: object
+idx = sr.index
+val = sr.values
+print(idx)
+print(val)
+# RangeIndex(start=0, stop=5, step=1)
+# ['2019-01-01' 3.14 'ABC' 100 True]
 
-# Series 인덱싱
-# 자료의 순서를 바꾸거나, 특정한 자료 선택
-s[[0,3,1]]  
-# 도시
-# 서울    9904312
-# 대구    2466052
-# 부산    3448737
-# Name: 인구, dtype: int64
-s[["서울", "대구", "부산"]]
-# 도시
-# 서울    9904312
-# 대구    2466052
-# 부산    3448737
-# Name: 인구, dtype: int64
 
-# Series 슬라이싱
-s[1:3]  # 두번째(1)부터 세번째(2)까지 (네번째(3) 미포함)
-# 도시
-# 부산    3448737
-# 인천    2890451
-# Name: 인구, dtype: int64
-s["부산":"대구"]  # 부산에서 대구까지 (대구도 포함)
-# 도시
-# 부산    3448737
-# 인천    2890451
-# 대구    2466052
-# Name: 인구, dtype: int64
-s0 = pd.Series(range(3), index=["a", "b", "c"])
-s0
-# a    0
-# b    1
-# c    2
-# dtype: int64
-s0.a
-# 0
-s0.b
-# 1
+tup_data = ('영인','2010-05-01','여',True)
+sr = pd.Series(tup_data, index = ['이름','생년월일','성별','학생여부'])
+print(sr)
+# 이름              영인
+# 생년월일    2010-05-01
+# 성별               여
+# 학생여부          True
+# dtype: object
+print(sr[0])
+print(sr['이름'])
+print(sr[[1,2]])
+print(sr[['생년월일','성별']])
+print(sr[1:2])
+print(sr['생년월일':'성별'])
+
+
+
+## DataFrame
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
