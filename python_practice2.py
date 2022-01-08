@@ -4,7 +4,76 @@ Created on Sat Jan  8 00:12:02 2022
 
 @author: sby04
 """
+#) 반복문
+# for 변수 in 리스트(또는 튜플, 문자열):
+#     수행할 문장1
+#     수행할 문장2
+#     ...
+    
+#1)
+    test_list = ['one', 'two', 'three'] 
+    for i in test_list: 
+        print(i)
+    # one
+    # two
+    # three
 
+#2)
+    a = [(1,2),(3,4),(5,6)]
+    for i in a:
+        print(i)
+    # (1, 2)
+    # (3, 4)
+    # (5, 6)
+    for (i,j) in a:
+        print(i+j)
+    # 3
+    # 7
+    # 11
+
+#3)
+    marks = [90, 25, 67, 45, 80]
+    student = 0           # 학생들에게 번호를 붙여주기 위해
+    for mark in marks: 
+        student += 1      # student = student +1
+        if mark >= 60: 
+            print("%d번 학생은 합격입니다." % student)
+        else: 
+            print("%d번 학생은 불합격입니다." % student)
+    # 1번 학생은 합격입니다.
+    # 2번 학생은 불합격입니다.
+    # 3번 학생은 합격입니다.
+    # 4번 학생은 불합격입니다.
+    # 5번 학생은 합격입니다.
+    student = 0 
+    for mark in marks: 
+        student += 1 
+        if mark < 60:
+            continue       # continue : 반복문의 처음으로 돌아감
+        print("%d번 학생 축하합니다. 합격입니다. " % student)
+    # 1번 학생 축하합니다. 합격입니다. 
+    # 3번 학생 축하합니다. 합격입니다. 
+    # 5번 학생 축하합니다. 합격입니다. 
+    for number in range(len(marks)):  # len(marks) => 5 // range(len(marks)) => range(5) => 0,1,2,3,4
+    if marks[number] < 60: 
+        continue
+    print("%d번 학생 축하합니다. 합격입니다." % (number+1))    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------------------------------------------------------------
+#) 연습문제
 l1 = [10,20,30]
 for i in l1:
     print(i)
@@ -193,6 +262,123 @@ for i in range(1,11):
     result *= i
 print(result)
 
+price_list = [32100, 32150, 32000, 32500]
+for i in range(len(price_list)):
+    print(price_list(i))
+# for i in price_list:
+#     print(i)
+# 32100
+# 32150
+# 32000
+# 32500
+for i in range(len(price_list)):
+    print(len(price_list)-i, price_list(i))
+# 3 32100
+# 2 32150
+# 1 32000
+# 0 32500
+for i in range(1, 4):
+    print(90 + 10 * i, price_list[i])
+# 100 32150
+# 110 32000
+# 120 32500
+
+my_list = ["가", "나", "다", "라"]
+for i in range(len(my_list)-1):
+    print(my_list[i] + my_list[i+1])
+# 가나
+# 나다
+# 다라   
+
+my_list = ["가", "나", "다", "라", "마"]
+for i in range(len(my_list)-2):
+    print(my_list[i:i+3])
+# ['가', '나', '다']
+# ['나', '다', '라']
+# ['다', '라', '마']
+
+my_list = ["가", "나", "다", "라"]
+for i in range(1,len(my_list)):
+    print(my_list[-i] + my_list[-i-1])
+# 라다
+# 다나
+# 나가
+
+my_list = [100, 200, 400, 800]
+for i in range(len(my_list)-1):
+    print(my_list[i+1]-my_list[i])
+# 100
+# 200
+# 400
+
+my_list = [100, 200, 400, 800, 1000, 1300]
+for i in range(len(my_list)-2):
+    x = my_list[i:i+3]
+    print(sum(x)/len(x))
+# 233.33333333333334
+# 466.6666666666667
+# 733.3333333333334
+# 1033.3333333333333
+
+low_prices  = [100, 200, 400, 800, 1000]
+high_prices = [150, 300, 430, 880, 1000]
+volatility = []
+for i in range(5):
+    volatility.append(low_prices[i]-high_prices[i])
+print(volatility)
+# [-50, -100, -30, -80, 0]
+
+apart = [['101호','102호'],['201호','202호'],['301호','302호']]
+print(apart)
+
+stock = [['시가',100,200,300],['종가',80,210,330]]
+print(stock)
+
+stock = {'시가' : [100,200,300], '종가': [80,210,330]}
+print(stock)
+
+stock = {'10/10' : [80,110,70,90], '10/11': [210,230,190,200]}
+
+apart = [ [101, 102], [201, 202], [301, 302] ]
+for row in apart:       # 변수 apart의 row(행)
+    for col in row:     # row(행)의 원소(col)
+        print(col, "호")
+# 101 호
+# 102 호
+# 201 호
+# 202 호
+# 301 호
+# 302 호
+for row in apart[::-1]:
+    for col in row[::-1]:
+        print(col,'호')
+# 302 호
+# 301 호
+# 202 호
+# 201 호
+# 102 호
+# 101 호
+
+data = [
+    [ 2000,  3050,  2050,  1980],
+    [ 7500,  2050,  2050,  1980],
+    [15450, 15050, 15550, 14900]
+]
+for row in data:
+    for i in row:
+        print(i+(i*0.00014))
+# 2000.28
+# 3050.427
+# 2050.287
+# 1980.2772
+# 7501.05
+# 2050.287
+# 2050.287
+# 1980.2772
+# 15452.163
+# 15052.107
+# 15552.177
+# 14902.086
 
 
 
