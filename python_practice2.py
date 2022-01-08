@@ -60,18 +60,6 @@ Created on Sat Jan  8 00:12:02 2022
     print("%d번 학생 축하합니다. 합격입니다." % (number+1))    
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 #---------------------------------------------------------------------------
 #) 연습문제
 l1 = [10,20,30]
@@ -379,6 +367,50 @@ for row in data:
 # 15052.107
 # 15552.177
 # 14902.086
+
+result = []
+for row in data:
+    for i in row:
+        result.append(i+(i*0.00014))
+print(result)
+# [2000.28, 3050.427, 2050.287, 1980.2772, 7501.05, 2050.287, 2050.287, 1980.2772, 15452.163, 15052.107, 15552.177, 14902.086]
+
+ohlc = [["open", "high", "low", "close"],
+        [100, 110, 70, 100],
+        [200, 210, 180, 190],
+        [300, 310, 300, 310]]
+for row in ohlc[1:]:
+    print(row[-1])
+# 100
+# 190
+# 310
+for row in ohlc[1:]:
+    if row[-1]>150:
+        print(row[-1])
+# 190
+# 310
+for row in ohlc[1:]:
+    if row[-1]>=row[0]:
+        print(row[-1])
+# 100
+# 310
+volatility = []
+for row in ohlc[1:]:
+    volatility.append(row[1]-row[2])
+print(volatility)
+# [40, 30, 10]
+for row in ohlc[1:]:
+    if row[-1]>row[0]:
+        print(row[1]-row[2])
+# 10
+profit = 0
+for row in ohlc[1:]:
+    profit += row[-1]-row[0]
+print(profit)
+# 0
+
+
+
 
 
 
