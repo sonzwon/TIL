@@ -83,9 +83,63 @@ print_value_by_key  (my_dict, "10/26")
 # [100, 130, 100, 100]
 
 def print_5xn(string):
-    print(string[:5])
-    print(string)
+    a = int(len(string)/5)
+    for i in range(a+1):
+        print(string[i*5:i*5+5])
+print_5xn("아이엠어보이유알어걸")
+# 아이엠어보
+# 이유알어걸
 
+def print_mxn(string,x):
+    a = int(len(string)/x)
+    for i in range(a+1):
+        print(string[i*x:i*x+x])
+print_mxn("아이엠어보이유알어걸", 3)
+# 아이엠
+# 어보이
+# 유알어
+# 걸
 
+def calc_monthly_salary(annual_salary):
+    print(int(round(annual_salary / 12 , -1)))
+calc_monthly_salary(12555555)
+# 1046300
+# round(실수, n) : n<0(소수점자리), n>0(정수자리)
 
+def make_url(address):
+    return 'wwww.'+ address+ '.com'
+print(make_url('naver'))
+# wwww.naver.com
 
+def make_list (string) :
+    my_list = []
+    for 변수 in string :
+        my_list.append(변수)
+    return my_list
+# def make_list (string) :
+#     return list(string)
+make_list("abcd")
+# ['a', 'b', 'c', 'd']
+
+def pickup_even(list):
+    l1 = []
+    for i in list:
+        if i%2==0:
+            l1.append(i)
+    return l1
+pickup_even([3, 4, 5, 6, 7, 8])
+# [4, 6, 8]
+
+def convert_int(num):
+    return int(num.replace(',',''))
+convert_int("1,234,567")
+# 1234567
+    
+    
+    
+    
+    
+    
+    
+    
+    
