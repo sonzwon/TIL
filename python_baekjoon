@@ -1,0 +1,22 @@
+# 백준 2525번
+# 내 풀이
+import datetime as dt
+from dateutil.relativedelta import relativedelta
+A, B = map(int, input().split())
+C = int(input())
+time = dt.datetime.strptime('{} {}'.format(A,B), '%H %M')
+take_time = relativedelta(minutes=C)
+end_time = time+take_time
+print(end_time.strftime('%H %M'))
+
+# 정답지 풀이
+H, M = map(int, input().split())
+timer = int(input()) 
+H += timer // 60
+M += timer % 60
+if M >= 60:
+    H += 1
+    M -= 60
+if H >= 24:
+    H -= 24
+print(H,M)
