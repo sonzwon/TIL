@@ -20,3 +20,30 @@ if M >= 60:
 if H >= 24:
     H -= 24
 print(H,M)
+
+
+
+#백준 2530번
+#내 풀이1
+A,B,C = map(int, input().split())
+D = int(input())
+A += D//3600
+B += (D%3600)//60
+C += (D%3600)%60
+if C >= 60:
+    C -= 60
+    B += 1
+if B >= 60:
+    B -= 60
+    A += 1
+if A >= 24:
+    A -= 24
+print(A,B,C)
+
+#내 풀이2
+H, M, S = map(int, input().split())
+t = int(input()) 
+S += t
+M += S//60
+H += M//60
+print(H%24, M%60, S%60)
