@@ -47,3 +47,20 @@ S += t
 M += S//60
 H += M//60
 print(H%24, M%60, S%60)
+
+
+
+#백준 5355번
+#내 풀이
+n = int(input())
+for _ in range(n):
+    T = list(input().split())
+    num = float(T[0])
+    for i in range(len(T)):
+        if T[i] =='@':
+            num *= 3
+        elif T[i] == '%':
+            num += 5
+        elif T[i] == '#':
+            num -= 7
+    print('%0.2f' %num)
