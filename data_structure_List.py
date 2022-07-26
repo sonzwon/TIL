@@ -208,3 +208,153 @@ class LinkedList(Node):
     
     def size(self):
         return self.size
+
+
+
+
+# [[ Double Linked List ]]
+
+# 노드 생성 클래스
+class Node:
+    def __init__(self, data, prev_node, next_node):
+        self.data = data
+        self.prev_node = prev_node
+        self.next_node = next_node
+
+        
+    def get_data(self):
+        return self.data
+
+    def get_prev(self):
+        return self.prev_node()
+    
+    def get_next(self):
+        return self.next_node
+    
+    def set_prev(self, new_prev):
+        self.prev_node = new_prev
+    
+    def set_next(self, new_next):
+        self.next_node = new_next
+        
+
+
+class DoubleLinkedList(Node):
+    def __init__(self):
+        self.head = Node(None)  #dummy node
+        self.tail = Node(None)
+        self.size = 0
+        self.head.set_next(self.tail)
+        self.tail.set_prev(self.head)
+        
+    
+    def add(self, data):
+        last = self.tail.get_prev()
+        new_node = Node(data, last, self.tail)
+        last.set_next(new_node)
+        self.tail.set_prev(new_node)
+        
+        
+    def insert(self, idx, data):
+        prev = Node(None)
+        curr = Node(None)
+        i = 0
+        if (idx < self.size/2):   #index가 헤드에서 더 가까우면
+            prev = self.head
+            curr = self.head.get_next()
+            i += 1
+            while i < idx:
+                prev = prev.get_next
+                curr = curr.get_next()
+            new_node = Node(data, prev, curr)
+            curr.set_prev(new_node)
+            prev.set_next(new_node)
+        else:   #index가 tail에서 가까우면
+            curr = self.tail
+            prev = self.tail.get_prev()
+            i += 1
+            while i < (self.size-idx):
+                curr = curr.get_prev()
+                prev = prev.get_prev()
+            new_node = Node(data, prev, curr)
+            prev.set_next(new_node)
+            curr.set_prev(new_node)
+        self.size += 1
+            
+
+        
+    def clear(self):
+        self.size = 0
+        self.head.set_next(self.tail)
+        self.tail.set_prev(self.head)
+    
+    
+    def delete(self, data):
+        return False
+
+            
+    def deletebyindex(self, idx):
+        prev = Node(None)
+        curr = Node(None)      
+        next = Node(None)
+        i = 0
+        if (idx < self.size/2):   #index가 헤드에서 더 가까우면
+            prev = self.head
+            curr = self.head.get_next()
+            i += 1
+            while i < idx:
+                prev = prev.get_next()
+                curr = curr.get_next()
+            prev.set_next(curr.get_next())
+            (curr.get_next()).set_next(prev)
+            curr.set_next(None)
+            curr.set_prev(None)
+        else:   #index가 tail에서 가까우면
+            curr = self.tail.get_prev()
+            next = this.tail
+            while (i < (self.size-idx-1)):
+                next = next.get_prev()
+                curr = curr.get_prev()
+            (next.get_prev()).set_prev(curr)
+            (curr.get_prev()).set_next(next)
+            curr.set_next(None)
+            curr.set_prev(None)
+        self.size -= 1
+
+    
+    def get(self, idx):
+        if idx < 0 or idx >= self.size:
+            raise Exception("Invalid Index")
+        i = 0
+        curr = Node(None)
+        if (idx < self.size/2):   #index가 헤드에서 더 가까우면
+            curr = self.head.get_next()
+            i += 1
+            while i < idx:
+                curr = curr.get_next()
+        else:   #index가 tail에서 가까우면
+            curr = self.tail.get_prev()
+            i += 1
+            while i < (self.size-idx-1):
+                curr = curr.get_prev()
+            
+    
+    def indexof(self, data):
+        return False
+
+    
+    def isEmpty(self):
+        return False
+
+        
+    def contains(self, data):
+        curr = self.head.get_next()
+        while curr != None:
+            if curr.get_data() != None and curr.get_data() == data:
+                return True
+            curr = curr.get_next()
+        return False
+            
+     
+    def size(self):
+        return self.size
