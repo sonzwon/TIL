@@ -124,8 +124,8 @@ class LinkedList(Node):
     # 리스트 맨 뒤에 데이터 추가해주는 함수
     def add(self, data):
         curr = self.head
-        while curr.get_next != None:
-            curr = curr.get_next    # 리스트 맨뒤로 이동하게 하는 while문
+        while curr.get_next() != None:
+            curr = curr.get_next()    # 리스트 맨뒤로 이동하게 하는 while문
         new_node = Node(data)       # 추가하고싶은 새로운 노드 생성
         curr.set_next(new_node)     # curr 노드의 다음 노드를 새로 생성한 노드로 포인터
         self.size += 1
@@ -135,11 +135,11 @@ class LinkedList(Node):
             raise Exception("Invalid Index")
         i = 0
         prev = self.head       #insert의 경우 포인터를 이동해주는 작업응 해야하므로 prev 노드 설정
-        curr = prev.get_next   
+        curr = prev.get_next()   
         i += 1
         while i < idx:
-            prev = prev.get_next
-            curr = curr.get_next    #인덱스까지 노드를 이동하게 하는 while문
+            prev = prev.get_next()
+            curr = curr.get_next()    #인덱스까지 노드를 이동하게 하는 while문
         new_node = Node(data)       #노드 생성
         prev.set_next(new_node)     #prev노드 다음 노드로 new_node설정
         new_node.set_next(curr)     #new_node 다음 노드로 curr설정 (이렇게 포인터를 바꿔줌으로써 데이터 삽입가능)
@@ -151,26 +151,26 @@ class LinkedList(Node):
     
     def delete(self, data):
         prev = self.head
-        curr = prev.get_next
+        curr = prev.get_next()
         while curr != None:
-            if curr.get_data == data:
-                prev.set_next(curr.get_next)
+            if curr.get_data() == data:
+                prev.set_next(curr.get_next())
                 curr.set_next(None)
                 self.size -= 1
-            prev = prev.get_next
-            curr = curr.get_next
+            prev = prev.get_next()
+            curr = curr.get_next()
             
     def deletebyindex(self, idx):
         if idx < 0 or idx >= self.size:
             raise Exception("Invalid Index")
         i = 0
         prev = self.head
-        curr = prev.get_next
+        curr = prev.get_next()
         i += 1
         while i < idx:
-            prev = prev.get_next
-            curr = curr.get_next
-        prev.set_next(curr.get_next)
+            prev = prev.get_next()
+            curr = curr.get_next()
+        prev.set_next(curr.get_next())
         curr.set_next(None)
         self.size -= 1
         return True
@@ -178,33 +178,33 @@ class LinkedList(Node):
     def get(self, idx):
         if idx < 0 or idx >= self.size:
             raise Exception("Invalid Index")
-        curr = self.head.get_next  #dummy node이기 때문에(head에 데이터가 없음)
+        curr = self.head.get_next()  #dummy node이기 때문에(head에 데이터가 없음)
         i = 0
         i += 1
         while i < idx:
-            curr = curr.get_next
-        return curr.get_data
+            curr = curr.get_next()
+        return curr.get_data()
     
     def indexof(self, data):
-        curr = self.head.get_next
+        curr = self.head.get_next()
         idx = 0
         while curr != None:
-            if curr.get_data == data:
+            if curr.get_data() == data:
                 return idx
-            curr = curr.get_next
+            curr = curr.get_next()
             idx += 1
         return -1
     
     def isEmpty(self):
-        if self.head.get_next == None:
+        if self.head.get_next() == None:
             return True
         
     def contains(self, data):
-        curr = self.head.get_next
+        curr = self.head.get_next()
         while curr != None:
-            if curr.get_data == data:
+            if curr.get_data() == data:
                 return True
-            curr = curr.get_next
+            curr = curr.get_next()
     
     def size(self):
         return self.size
@@ -226,7 +226,7 @@ class Node:
         return self.data
 
     def get_prev(self):
-        return self.prev_node()
+        return self.prev_node
     
     def get_next(self):
         return self.next_node
@@ -253,13 +253,14 @@ class DoubleLinkedList(Node):
         new_node = Node(data, last, self.tail)
         last.set_next(new_node)
         self.tail.set_prev(new_node)
+        self.size += 1
         
         
     def insert(self, idx, data):
         prev = Node(None)
         curr = Node(None)
         i = 0
-        if (idx < self.size/2):   #index가 헤드에서 더 가까우면
+        if (idx < self.size/2): 
             prev = self.head
             curr = self.head.get_next()
             i += 1
@@ -269,7 +270,7 @@ class DoubleLinkedList(Node):
             new_node = Node(data, prev, curr)
             curr.set_prev(new_node)
             prev.set_next(new_node)
-        else:   #index가 tail에서 가까우면
+        else: 
             curr = self.tail
             prev = self.tail.get_prev()
             i += 1
@@ -282,7 +283,6 @@ class DoubleLinkedList(Node):
         self.size += 1
             
 
-        
     def clear(self):
         self.size = 0
         self.head.set_next(self.tail)
@@ -290,15 +290,19 @@ class DoubleLinkedList(Node):
     
     
     def delete(self, data):
-        return False
+        curr = self.tail.get_prev()
+        (curr.get_prev()).set_next(self.tail)
+        self.tail.set_prev(curr.get_prev())
+        curr.set_next(None)
+        self.size -= 1
+        
 
-            
     def deletebyindex(self, idx):
         prev = Node(None)
         curr = Node(None)      
         next = Node(None)
         i = 0
-        if (idx < self.size/2):   #index가 헤드에서 더 가까우면
+        if (idx < self.size/2):
             prev = self.head
             curr = self.head.get_next()
             i += 1
@@ -306,10 +310,10 @@ class DoubleLinkedList(Node):
                 prev = prev.get_next()
                 curr = curr.get_next()
             prev.set_next(curr.get_next())
-            (curr.get_next()).set_next(prev)
+            (curr.get_next()).set_prev(prev)
             curr.set_next(None)
             curr.set_prev(None)
-        else:   #index가 tail에서 가까우면
+        else:   
             curr = self.tail.get_prev()
             next = this.tail
             while (i < (self.size-idx-1)):
@@ -327,12 +331,12 @@ class DoubleLinkedList(Node):
             raise Exception("Invalid Index")
         i = 0
         curr = Node(None)
-        if (idx < self.size/2):   #index가 헤드에서 더 가까우면
+        if (idx < self.size/2): 
             curr = self.head.get_next()
             i += 1
             while i < idx:
                 curr = curr.get_next()
-        else:   #index가 tail에서 가까우면
+        else:   
             curr = self.tail.get_prev()
             i += 1
             while i < (self.size-idx-1):
@@ -340,11 +344,19 @@ class DoubleLinkedList(Node):
             
     
     def indexof(self, data):
-        return False
+        curr = self.head.get_next()
+        idx = 0
+        while curr != None:
+            if curr.get_data() == data:
+                return idx
+            curr = curr.get_next()
+            idx += 1
+        return -1
 
     
     def isEmpty(self):
-        return False
+        if self.head.get_next() == self.tail:
+            return True
 
         
     def contains(self, data):
