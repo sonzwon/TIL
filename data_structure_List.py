@@ -370,3 +370,15 @@ class DoubleLinkedList(Node):
      
     def size(self):
         return self.size
+
+
+
+
+# [ 백준 11728 ]
+A, B = map(int, input().split())
+arrayA = list(map(int, input().split()))
+arrayB = list(map(int, input().split()))
+new_array = sorted(arrayA + arrayB)
+for i in new_array:
+    print(i, end=' ')
+
