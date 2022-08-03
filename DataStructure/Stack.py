@@ -40,3 +40,44 @@ class Stack:
     
     def size(self):
         return self.size
+
+
+
+# [[  백준 9012 : 괄호  ]]
+
+# 내 코드 - 로직은 올바르게 돌아가지만 오답처리됨
+N = int(input())
+for _ in range(N):
+    T = str(input())
+    stack = []
+    for t in T:
+        if t == '(':
+            stack.append(t)
+        else:  
+            if not stack:
+                print("NO")
+                break
+            stack.pop()
+    else:
+        if len(stack)>0:
+            print("NO")
+        else:
+            print("Yes")
+
+# retry - 다른 사람 코드 참고
+N = int(input())
+for _ in range(N):
+    stack = []
+    T = input()
+    VPS = True
+    for t in T:
+        if t == '(':
+            stack.append('(')
+        else:
+            if not stack:
+                VPS = False
+            stack.pop
+    if VPS and not stack:
+        print('YES')
+    elif not VPS or stack:
+        print('NO')
