@@ -29,7 +29,7 @@ class LinkedQueue:
         if self.size == 0:
             raise Exception("Queue is Empty")
         curr = self.head.get_next()
-        self.head.get_next() = curr.get_next()
+        self.head.set_next(curr.get_next())
         curr.set_next(None)
         self.size -= 1
         if self.head.get_next()==None:
@@ -48,3 +48,47 @@ class LinkedQueue:
         self.head.set_next(None)
         self.tail = self.head
         self.size = 0
+
+
+
+class CircularQueue:
+    def __init__(self, size):
+        self.elements = [None]*(size+1)
+        self.front = 0
+        self.rear = 0
+        self.maxsize = size+1
+        
+    def offer(self, data):
+        if self.front == (self.rear + 1) % self.maxsize:
+            raise Exception("Queue is Full")
+        self.rear = (self.rear + 1) % self.maxsize
+        self.elements[self.rear] = data
+        
+    def poll(self):
+        if self.front == self.rear:
+            raise Exception("Queue is Empty")
+        self.front = (self.front + 1) % self.maxsize
+        return self.elements[self.front]
+    
+    def peek(self):
+        if self.front == self.rear:
+            raise Exception("Queue is Empty")
+        return self.elements[self.front + 1]
+    
+    def isEmpty(self):
+        if self.front == self.rear:
+            return True
+    
+    def isFull(self):
+        if self.front == (self.rear + 1) % self.maxsize:
+            return True
+    
+    def size(self):
+        if self.front <= self.rear:
+            return (self.rear - self.front)
+        else:
+            return (self.maxsize - self.front + self.rear)
+    
+    def clear(self):
+        self.front = 0
+        self.rear = 0
