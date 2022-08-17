@@ -19,10 +19,11 @@ if __name__ == '__main__':
     print(BinarySearch(arr,7)) #6
 
 
+
 # [ Bubble Sort ]
 def BubbleSort(arr):
-    for i in range(len(arr)-1): #전체리스트 순환
-        for j in range(len(arr)-1-i): #정렬된 element제외하고 순환
+    for i in range(len(arr)-1):
+        for j in range(len(arr)-1-i):
             if arr[j] > arr[j+1]:
                 arr[j], arr[j+1] = arr[j+1], arr[j]
 
@@ -30,5 +31,25 @@ def BubbleSort(arr):
 if __name__ == '__main__':
     arr = [9,1,6,3,7,2,8,4,5,0]
     BubbleSort(arr)
+    print(arr)
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+
+
+# [ Insertion Sort ]
+def InsertionSort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i-1
+        while j>=0 and  arr[j]>key:
+            arr[j+1] = arr[j]
+            j = j-1
+        arr[j+1] = key
+
+# [ Insertion Sort Test ]
+if __name__ == '__main__':
+    arr = [9,1,6,3,7,2,8,4,5,0]
+    InsertionSort(arr)
     print(arr)
 # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
