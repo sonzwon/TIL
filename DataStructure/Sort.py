@@ -57,15 +57,15 @@ if __name__ == '__main__':
 
 
 # [ Merge Sort ]
-def merge_sort(arr):
+def MergeSort(arr):
     if len(arr)<= 1:
         return
     #divide
     mid = len(arr)//2
     left = arr[:mid]
     right = arr[mid:]
-    merge_sort(left)
-    merge_sort(right)
+    MergeSort(left)
+    MergeSort(right)
     #conquer
     l = 0
     r = 0
@@ -90,6 +90,40 @@ def merge_sort(arr):
 # [ Merge Sort Test ]
 if __name__ == '__main__':
     arr = [9,1,6,3,7,2,8,4,5,0]
-    merge_sort(arr)
+    MergeSort(arr)
+    print(arr)
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+
+
+# [ Quick Sort ]
+def QuickSort(arr):
+    Sort(arr, 0, len(arr)-1)
+
+
+def Sort(arr, low, high):
+    if low>=high:
+        return
+    pivot = (low+high)//2
+    pivotvalue = arr[pivot]
+    left = low
+    right = high
+    while left <= right:
+        while arr[left]< pivotvalue:
+            left += 1
+        while arr[right]>pivotvalue:
+            right -= 1
+        if left <= right:
+            arr[left], arr[right] = arr[right], arr[left]
+            left += 1
+            right -= 1
+    Sort(arr, low, right)
+    Sort(arr, left, high)
+
+# [ Quick Sort Test ]
+if __name__ == '__main__':
+    arr = [9,1,6,3,7,2,8,4,5,0]
+    QuickSort(arr)
     print(arr)
 # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
