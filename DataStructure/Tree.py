@@ -1,3 +1,4 @@
+# [ Binary Search Tree ]
 class Node:
     def __init__(self, data, left=None, right=None):
         self.data = data
@@ -8,23 +9,21 @@ class Node:
 class BinarySearchTree:
     def __init__(self):
         self.root = None
-        self.size = 0
+        self._size = 0
 
     def insert_node(self, node, value):
         if node is None:
             return Node(value)
         if value < node.data:
             node.left = self.insert_node(node.left, value)
-        elif value > node.val:
+        elif value > node.data:
             node.right = self.insert_node(node.right, value)
         return node
 
-    def size(self):
-        return self.size
 
     def insert(self, value):
         self.root = self.insert_node(self.root, value)
-        self.size += 1
+        self._size += 1
 
     def contains(self, value):
         return self.contains_node(self.root, value)
@@ -54,14 +53,17 @@ class BinarySearchTree:
         elif value > node.data:
             node.right = self.delete_node(node.right, value)
         else:
-            self.size -= 1
+            self._size -= 1
             if node.left is None:
                 return node.right
             elif node.right is None:
                 return node.left
-            node.value = self.min_node(node.right)
-            node.right = self.delete_node(node.right, node.value)
+            node.data = self.min_node(node.right)
+            node.right = self.delete_node(node.right, node.data)
         return node
+
+    def size(self):
+        return self._size   
 
     def min_node(node):
         min_value = node.data
@@ -118,3 +120,37 @@ class BinarySearchTree:
 
         visit(self.root)
         return ret
+    
+# [ Test Code ]
+if __name__ == "__main__":
+    btree = BinarySearchTree()
+    for i in [3, 1, 2, 3, 8, 7]:
+        print(f"btree.insert({i})")
+        btree.insert(i)
+        print(f"btree.size(): {btree.size()}")
+
+    print("==================================")
+    for i in [3, 1, 2, 3, 8, 7]:
+        print(f"btree.contains({i}): {btree.contains(i)}")
+
+    print("===================================")
+    print(f"btree.preorder(): {btree.preorder()}")
+    print(f"btree.inorder(): {btree.inorder()}")
+    print(f"btree.postorder(): {btree.postorder()}")
+    print("=====================================")
+
+    print("btree.delete(2)")
+    btree.delete(2)
+    print("btree.delete(8)")
+    btree.delete(8)
+    print(f"btree.size(): {btree.size()}")
+
+    print("==================================")
+    for i in [3, 1, 2, 3, 8, 7]:
+        print(f"btree.contains({i}): {btree.contains(i)}")
+
+    print("===================================")
+    print(f"btree.preorder(): {btree.preorder()}")
+    print(f"btree.inorder(): {btree.inorder()}")
+    print(f"btree.postorder(): {btree.postorder()}")
+    print("=====================================")
