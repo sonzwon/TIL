@@ -13,9 +13,9 @@ class BinarySearchTree:
     def insert_node(self, node, value):
         if node is None:
             return Node(value)
-        if val < node.data:
+        if value < node.data:
             node.left = self.insert_node(node.left, value)
-        elif val > node.val:
+        elif value > node.val:
             node.right = self.insert_node(node.right, value)
         return node
 
@@ -31,14 +31,16 @@ class BinarySearchTree:
     
 
     def contains_node(self, node, value):
+        if node is None:
+            return False  
+        
         if value < node.data:
             return self.contains_node(node.left, value)
-        elif:
+        elif value > node.data:
             return self.contains_node(node.right, value)
         else:  # value == node.data
             return True
-        if node is None:
-            return False  
+
 
     def delete(self, value):
         return self.delete_node(self.root, value)
